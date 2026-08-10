@@ -1,1 +1,1 @@
-# SeraphNote-_V1_2
+# SeraphNote_V1_2
