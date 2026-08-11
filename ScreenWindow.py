@@ -2,13 +2,14 @@
 import pygame
 import project_style as style
 
-
 # Sizes (800, 600) , (1920, 1080) , (1490, 914), (2560, 1440)
 
 class ScreenWindow:
     def __init__(self):
         self.running = False
         self.size = (style.WIDTH, style.HEIGHT)
+
+        self.pygame_version = pygame.version.ver
 
         self.screen = None
 
