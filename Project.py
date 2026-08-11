@@ -6,7 +6,7 @@ class Project:
         self.description = "New Seraph Project"
         self.author = ""
         self.sheet_count = 0
-        self.active_sheet = None
+        self.active_sheet_indx = None
         self.project_sheets = []
 
     def create_sheet(self, sheet_name):
@@ -17,6 +17,6 @@ class Project:
     def delete_sheet(self, sheet_name):
         # search for sheet to remove
         for sheet in self.project_sheets:
-            if sheet.name == sheet_name:
+            if sheet.sheet_name == sheet_name:
                 self.project_sheets.remove(sheet)
                 self.sheet_count -= 1

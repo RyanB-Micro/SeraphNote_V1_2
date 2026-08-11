@@ -13,6 +13,9 @@ class ScreenWindow:
 
         self.screen = None
 
+        self.project_name = ""
+        self.sheet_name = ""
+
     def start_screen(self):
         pygame.init()
         self.screen = pygame.display.set_mode(self.size, pygame.RESIZABLE)
@@ -32,8 +35,15 @@ class ScreenWindow:
             self.draw_screen()
 
         # Close when loop broken
+        self.running = False
         pygame.quit()
 
     def draw_screen(self):
+        pygame.display.set_caption(f"SeraphNote: {self.project_name} - {self.sheet_name}")
         self.screen.fill(style.CALM_AZURE)
+
+
+
+
+        # Refresh at end
         pygame.display.flip()
