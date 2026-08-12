@@ -1,14 +1,17 @@
 
 import threading
+import os
 
 import tkinter as tk
 from tkinter import ttk
+from tkinter import filedialog
 import platform
 
 from Project import Project
 from Sheet import Sheet
 from ScreenWindow import ScreenWindow
 
+import file_control as files
 
 
 
@@ -140,10 +143,24 @@ class SeraphNoteApp:
 
 
     def save_project(self):
-        pass
+        # create directory if doest exist
+        os.makedirs("SeraphNote_Saves\\", exist_ok=True)
+
+        # Ensure a name wass entered
+        if len(self.active_project.name) < 1:
+            project_name = "SeraphNote__New_File__.pk1"
+        else:
+            project_name = self.active_project.name
+
+        # Open file location window to save project
+        file_name = filedialog.asksaveasfilename(initialfile=project_name, initialdir="SeraphNote_Saves\\",
+                                            defaultextension=".pk1", filetypes=[("Project File", ".pk1")])
+
+        files.save_project(self.active_project, file_name)
+
 
     def load_project(self):
-        pass
+            pass
 
 
 
