@@ -24,6 +24,12 @@ def dataframe_to_sheets(project, sheets_data):
     return sheets_list_buffer
 
 
+def project_meta_to_datafram(project):
+    return pd.DataFrame([project.project_meta_data_out()])
+
+def dataframe_to_project_meta(project, project_meta):
+    for _, row in project_meta.iterrows():
+        project.project_meta_data_in(row)
 
 
 def save_project(project, filename="SeraphNote_Save_New.pk1"):
@@ -31,6 +37,7 @@ def save_project(project, filename="SeraphNote_Save_New.pk1"):
     os.makedirs(os.path.dirname(filename), exist_ok=True)
 
     project_data = {
+        'project_meta': project_meta_to_datafram(project),
         'sheets': sheets_to_dataframe(project)
     }
 
@@ -42,6 +49,8 @@ def save_project(project, filename="SeraphNote_Save_New.pk1"):
 
 def load_project(project, filename="SeraphNote_Save_New.pk1"):
     load_data = pd.read_pickle(filename)
+
+    dataframe_to_project_meta(project, load_data['project_meta'])
 
     sheets_list_buffer = dataframe_to_sheets(project, load_data['sheets'])
 

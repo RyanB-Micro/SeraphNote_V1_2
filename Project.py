@@ -20,3 +20,18 @@ class Project:
             if sheet.sheet_name == sheet_name:
                 self.project_sheets.remove(sheet)
                 self.sheet_count -= 1
+
+    def project_meta_data_out(self):
+        data = {
+            'project_name': self.name,
+            'description': self.description,
+            'author': self.author,
+            'sheet_count': self.sheet_count
+        }
+        return data
+
+    def project_meta_data_in(self, data):
+        self.name = data['project_name']
+        self.description = data['description']
+        self.author = data['author']
+        self.sheet_count = data['sheet_count']
