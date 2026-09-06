@@ -146,7 +146,7 @@ class SeraphNoteApp:
         # create directory if doest exist
         os.makedirs("SeraphNote_Saves\\", exist_ok=True)
 
-        # Ensure a name wass entered
+        # Ensure a name is stored
         if len(self.active_project.name) < 1:
             project_name = "SeraphNote__New_File__.pk1"
         else:
@@ -160,9 +160,18 @@ class SeraphNoteApp:
 
 
     def load_project(self):
-            pass
+        # Ensure a name is stored
+        if len(self.active_project.name) < 1:
+            project_name = "SeraphNote__New_File__.pk1"
+        else:
+            project_name = self.active_project.name
 
+        # Open file location window to find project file
+        file_name = filedialog.askopenfilename(initialfile=project_name, initialdir="SeraphNote_Saves\\",
+                                               defaultextension=".pk1", filetypes=[("Project File", ".pk1")])
 
+        files.load_project(self.active_project, file_name)
+        self.update_sheet_list()
 
     def start_screen(self):
         self.stop_event.clear()
