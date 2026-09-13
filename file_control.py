@@ -31,6 +31,9 @@ def dataframe_to_project_meta(project, project_meta):
     for _, row in project_meta.iterrows():
         project.project_meta_data_in(row)
 
+        # return updated project
+        return project
+
 
 def save_project(project, filename="SeraphNote_Save_New.pk1"):
     # Create save directory if it doesn't exist
@@ -47,12 +50,24 @@ def save_project(project, filename="SeraphNote_Save_New.pk1"):
 
 
 
-def load_project(project, filename="SeraphNote_Save_New.pk1"):
+#def load_project(project, filename="SeraphNote_Save_New.pk1"):
+def load_project(project, filename):
+
+    # Load pickle file
     load_data = pd.read_pickle(filename)
 
-    dataframe_to_project_meta(project, load_data['project_meta'])
+    # Retrieve project meta information
+    project = dataframe_to_project_meta(project, load_data['project_meta'])
+    # replace outdated project name with loaded file name
+    project.name = saved_name = os.path.basename(filename)
 
+    # Load sheets from file
     sheets_list_buffer = dataframe_to_sheets(project, load_data['sheets'])
+
+
 
     # Replace project sheet list
     project.project_sheets = sheets_list_buffer
+
+    # ensure updated project is passed back
+    return project

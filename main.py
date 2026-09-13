@@ -29,7 +29,8 @@ class SeraphNoteApp:
 
         # TK window attributes
         self.root = root
-        self.root.title("SeraphNote Project Manager")
+        #self.root.title("SeraphNote Project Manager")
+        self.root.title(f"SeraphNote: {self.active_project.name}")
         self.root.protocol("WM_DELETE_WINDOW", self.quit_all)
         self.root.geometry("400x300")
 
@@ -170,8 +171,12 @@ class SeraphNoteApp:
         file_name = filedialog.askopenfilename(initialfile=project_name, initialdir="SeraphNote_Saves\\",
                                                defaultextension=".pk1", filetypes=[("Project File", ".pk1")])
 
-        files.load_project(self.active_project, file_name)
+        self.active_project = files.load_project(self.active_project, file_name)
         self.update_sheet_list()
+        self.screen_window.project_name = self.active_project.name
+        self.root.title(f"SeraphNote: {self.active_project.name}")
+
+
 
     def start_screen(self):
         self.stop_event.clear()
