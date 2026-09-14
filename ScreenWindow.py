@@ -113,7 +113,6 @@ class ScreenWindow:
                         # self.size = (style.WIDTH, style.HEIGHT)
                         # self.width = self.size[0]
                         # self.height = self.size[1]
-                        # print(self.size)
                         self.size = self.screen.get_size()
                         self.width, self.height = self.screen.get_size()  # pygame.display.get_window_size()
                         self.draw_screen()
