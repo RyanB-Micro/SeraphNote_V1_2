@@ -36,7 +36,7 @@ MINT_64 = (64, 128, 128)
 PURP_64 = (64, 64, 128)
 
 
-tool_strip_width = 64
+tool_strip_height = 64
 tool_width = 100
 tool_height = 50
 tool_spacing = 20
